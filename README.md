@@ -1,5 +1,5 @@
 # All Fixed !
 
-**You can Clone it Now !**
+**Testing....**
 
 *I will fix readme soon...*
