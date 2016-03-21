@@ -5,10 +5,17 @@ sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-d
 
 # Let's install the bot.
 cd $HOME
-git clone https://github.com/SEEDTEAM/TeleSeed.git
-cd TeleSeed
+git clone https://github.com/telemanagerplus/TeleManagerPlus.git
+cd TeleManagerPlus
+chmod +x launchfix2.sh
 chmod +x launch.sh
-./launch.sh install
+./launchfix2.sh install
+cd .luarocks
+cd bin
+./luarocks-5.2 install luafilesystem
+./luarocks-5.2 install lub
+./luarocks-5.2 install luaexpat
+./launchfix2.sh install
 ./launch.sh # Enter a phone number & confirmation code.
 ```
 ### One command
@@ -18,28 +25,27 @@ To install everything in one command (useful for VPS deployment) on Debian-based
 sudo apt-get update; sudo apt-get upgrade -y --force-yes; sudo apt-get dist-upgrade -y --force-yes; sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-dev libevent-dev libjansson* libpython-dev make unzip git redis-server g++ -y --force-yes && git clone https://github.com/SEEDTEAM/TeleSeed.git && cd TeleSeed && chmod +x launchfix2.sh && ./launchfix2.sh install && chmod +x launch.sh && ./launch.sh install
 ```
 
-***After do these steps, See this post on our channel*** : https://telegram.me/telemanager_ch/248
-****or do these:****
+***If you use One Command installation,do these steps after that:***
 
-***cd .luarocks****
-***cd bin****
-***./luarocks-5.2 install luafilesystem****
-***./luarocks-5.2 install lub****
-***./luarocks-5.2 install luaexpat****
+***cd .luarocks***
+***cd bin***
+***./luarocks-5.2 install luafilesystem***
+***./luarocks-5.2 install lub***
+***./luarocks-5.2 install luaexpat***
 
-***Then :****
+***Then :***
 
-***cd ..****
-***cd ..****
-***./launch.sh install****
+***cd ..***
+***cd ..***
+***./launchfix2.sh install***
 
-***After installing, Run your bot :****
+***After installing, Run your bot :***
 ***./launch.sh****
 
-***Then enter PhoneNumber****
-***Then Code..****
+***Then enter PhoneNumber***
+***Then Code..***
 
-***Finished!****
+***Finished!***
 
 ***Your bot now successFully run !****
 
