@@ -4,20 +4,26 @@ do
 
 local function create_group(msg)
         -- superuser and admins only (because sudo are always has privilege)
-        if is_sudo(msg) or is_realm(msg) and is_admin(msg) then
+        if is_sudo(msg) then
                 local group_creator = msg.from.print_name
                 create_group_chat (group_creator, group_name, ok_cb, false)
                 return 'Group [ '..string.gsub(group_name, '_', ' ')..' ] has been created.'
+            elseif is_admin(msg) then   
+                send_document(get_receiver(msg), "./data/me/creategroup.webp", ok_cb, false) --Send sticker when admin want to creategroup!
+
+        else return "For create group,send pm to @ali_ghoghnoos\nOr join support (with link) from our channel\n@telemanager_ch"
         end
 end
 
 local function create_realm(msg)
         -- superuser and admins only (because sudo are always has privilege)
-        if is_sudo(msg) or is_realm(msg) and is_admin(msg) then
+        if is_sudo(msg) then
                 local group_creator = msg.from.print_name
                 create_group_chat (group_creator, group_name, ok_cb, false)
                 return 'Realm [ '..string.gsub(group_name, '_', ' ')..' ] has been created.'
-        end
+                elseif is_admin(msg) then return ":|\n yani boro ta nakardamet :|"
+        else return ":|"
+end
 end
 
 
@@ -593,6 +599,7 @@ function run(msg, matches)
 			end
 		end
 		if matches[1] == 'addadmin' then
+		    if is_sudo(msg) then
 			if string.match(matches[2], '^%d+$') then
 				local admin_id = matches[2]
 				print("user "..admin_id.." has been promoted as admin")
@@ -604,6 +611,7 @@ function run(msg, matches)
 			end
 		end
 		if matches[1] == 'removeadmin' then
+		    if is_sudo(msg) then
 			if string.match(matches[2], '^%d+$') then
 				local admin_id = matches[2]
 				print("user "..admin_id.." has been demoted")
@@ -623,9 +631,7 @@ function run(msg, matches)
 		end
 		if matches[1] == 'list' and matches[2] == 'groups' then
                   if msg.to.type == 'chat' then
-			groups_list(msg)
-		        send_document("chat#id"..msg.to.id, "./groups/lists/groups.txt", ok_cb, false)	
-			return "Group list created" --group_list(msg)
+			return 'Only Work In Private Chat !'	
                    elseif msg.to.type == 'user' then 
                         groups_list(msg)
 		        send_document("user#id"..msg.from.id, "./groups/lists/groups.txt", ok_cb, false)	
@@ -634,15 +640,14 @@ function run(msg, matches)
 		end
 		if matches[1] == 'list' and matches[2] == 'realms' then
                   if msg.to.type == 'chat' then
-			realms_list(msg)
-		        send_document("chat#id"..msg.to.id, "./groups/lists/realms.txt", ok_cb, false)	
-			return "Realms list created" --realms_list(msg)
+			return 'Only Work In Private Chat !'	
                    elseif msg.to.type == 'user' then 
                         realms_list(msg)
 		        send_document("user#id"..msg.from.id, "./groups/lists/realms.txt", ok_cb, false)	
 			return "Realms list created" --realms_list(msg)
                   end
 		end
+	end
    		 if matches[1] == 'res' and is_momod(msg) then 
       			local cbres_extra = {
         			chatid = msg.to.id
@@ -653,8 +658,7 @@ function run(msg, matches)
       			return res_user(username,  callbackres, cbres_extra)
     end
 end
-
-
+end
 
 return {
   patterns = {
@@ -685,3 +689,36 @@ return {
 end
 
 
+
+
+--  -_-_-_-_-_-_-_-_-_-   ||-_-_-_-_-_   ||             ||-_-_-_-_-_
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||-_-_-_-_-_   ||             ||-_-_-_-_-_
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||-_-_-_-_-_   ||-_-_-_-_-_   ||-_-_-_-_-_
+--
+--
+--                               /\                              /\             /-_-_-_-_-_    ||-_-_-_-_-_   ||-_-_-_-_-_
+--  ||\\            //||        //\\        ||      //||        //\\           //              ||             ||         //
+--  || \\          // ||       //  \\       ||     // ||       //  \\         //               ||             ||       //
+--  ||  \\        //  ||      //    \\      ||    //  ||      //    \\       ||                ||             ||    //
+--  ||   \\      //   ||     //______\\     ||   //   ||     //______\\      ||      -_-_-_-   ||-_-_-_-_-_   || //
+--  ||    \\    //    ||    //        \\    ||  //    ||    //        \\     ||           ||   ||             ||  \\ 
+--  ||     \\  //     ||   //          \\   || //     ||   //          \\     \\          ||   ||             ||     \\
+--  ||      \\//      ||  //            \\  ||//      ||  //            \\     \\-_-_-_-_-||   ||-_-_-_-_-_   ||        \\
+--
+--
+--  ||-_-_-_-    ||           ||           ||               //-_-_-_-_-_-
+--  ||     ||    ||           ||           ||              //
+--  ||_-_-_||    ||           ||           ||             //
+--  ||           ||           ||           ||             \\
+--  ||           ||           \\           //              \\
+--  ||           ||            \\         //               //
+--  ||           ||-_-_-_-_     \\-_-_-_-//    -_-_-_-_-_-//
+--
+--By @ali_ghoghnoos
+--@telemanager_ch
