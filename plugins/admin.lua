@@ -121,54 +121,54 @@ local function run(msg,matches)
     end
     if matches[1] == "setbotphoto" then
     	redis:set("bot:photo", "waiting")
-    	return 'Please send me bot photo now'
+    	return 'Now send a photo to me ...'
     end
     if matches[1] == "markread" then
     	if matches[2] == "on" then
     		redis:set("bot:markread", "on")
-    		return "Mark read > on"
+    		return "Bot markread turned on!"
     	end
     	if matches[2] == "off" then
     		redis:del("bot:markread")
-    		return "Mark read > off"
+    		return "Bot markread turned off!"
     	end
     	return
     end
     if matches[1] == "pm" then
     	send_large_msg("user#id"..matches[2],matches[3])
-    	return "Msg sent"
+    	return "Msg sent!\nUser ID : "..matches[2]
     end
     if matches[1] == "block" then
     	if is_admin2(matches[2]) then
-    		return "You can't block admins"
+    		return "You can't block admins|Sudo"
     	end
     	block_user("user#id"..matches[2],ok_cb,false)
-    	return "User blocked"
+    	return "User blocked\nID : "..matches[2]
     end
     if matches[1] == "unblock" then
     	unblock_user("user#id"..matches[2],ok_cb,false)
-    	return "User unblocked"
+    	return "User unblocked\nID : "..matches[2]
     end
     if matches[1] == "import" then--join by group link
     	local hash = parsed_url(matches[2])
     	import_chat_link(hash,ok_cb,false)
     end
-    if matches[1] == "contactlist" then
+    if matches[1] == "contactlist" and is_sudo(msg) then
       get_contact_list(get_contact_list_callback, {target = msg.from.id})
       return "I've sent contact list with both json and text format to your private"
     end
-    if matches[1] == "addcontact" and matches[2] then    add_contact(matches[2],matches[3],matches[4],ok_cb,false)
-      return "Number "..matches[2].." add from contact list"
+    if matches[1] == "addcontact" and matches[2] and is_sudo(msg) then    add_contact(matches[2],matches[3],matches[4],ok_cb,false)
+      return "Number "..matches[2].." add to contact list"
     end
-    if matches[1] == "delcontact" then
+    if matches[1] == "delcontact" and is_sudo(msg) then
       del_contact("user#id"..matches[2],ok_cb,false)
       return "User "..matches[2].." removed from contact list"
     end
-    if matches[1] == "dialoglist" then
+    if matches[1] == "dialoglist" and is_sudo(msg) then
       get_dialog_list(get_dialog_list_callback, {target = msg.from.id})
       return "I've sent dialog list with both json and text format to your private"
     end
-    if matches[1] == "whois" then
+    if matches[1] == "whois" and is_sudo(msg) then
       user_info("user#id"..matches[2],user_info_callback,{msg=msg})
     end
     if matches[1] == "sync_gbans" then
@@ -205,5 +205,41 @@ return {
   },
   run = run,
 }
---By @imandaneshi :)
---https://github.com/SEEDTEAM/TeleSeed/blob/master/plugins/admin.lua
+
+
+
+
+
+--  -_-_-_-_-_-_-_-_-_-   ||-_-_-_-_-_   ||             ||-_-_-_-_-_
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||-_-_-_-_-_   ||             ||-_-_-_-_-_
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||-_-_-_-_-_   ||-_-_-_-_-_   ||-_-_-_-_-_
+--
+--
+--                               /\                              /\             /-_-_-_-_-_    ||-_-_-_-_-_   ||-_-_-_-_-_
+--  ||\\            //||        //\\        ||      //||        //\\           //              ||             ||         //
+--  || \\          // ||       //  \\       ||     // ||       //  \\         //               ||             ||       //
+--  ||  \\        //  ||      //    \\      ||    //  ||      //    \\       ||                ||             ||    //
+--  ||   \\      //   ||     //______\\     ||   //   ||     //______\\      ||      -_-_-_-   ||-_-_-_-_-_   || //
+--  ||    \\    //    ||    //        \\    ||  //    ||    //        \\     ||           ||   ||             ||  \\ 
+--  ||     \\  //     ||   //          \\   || //     ||   //          \\     \\          ||   ||             ||     \\
+--  ||      \\//      ||  //            \\  ||//      ||  //            \\     \\-_-_-_-_-||   ||-_-_-_-_-_   ||        \\
+--
+--
+--  ||-_-_-_-    ||           ||           ||               //-_-_-_-_-_-
+--  ||     ||    ||           ||           ||              //
+--  ||_-_-_||    ||           ||           ||             //
+--  ||           ||           ||           ||             \\
+--  ||           ||           \\           //              \\
+--  ||           ||            \\         //               //
+--  ||           ||-_-_-_-_     \\-_-_-_-//    -_-_-_-_-_-//
+--
+--By @ali_ghoghnoos
+--@telemanager_ch
+
+--Tnx To Imandaneshi for this Plugin ;)
