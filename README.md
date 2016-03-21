@@ -1,5 +1,5 @@
-# dont Clone Yet !
+# All Fixed !
 
-**wait for full fixing...**
+**You can Clone it Now !**
 
-*Tnx !*
+*I will fix readme soon...*
