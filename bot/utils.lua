@@ -377,7 +377,7 @@ end
 -- Returns true if user was warned and false if not warned (is allowed)
 function warns_user_not_allowed(plugin, msg)
   if not user_allowed(plugin, msg) then
-    local text = 'This plugin requires privileged user'
+    local text = 'This plugin requires Sudo users'
     local receiver = get_receiver(msg)
     send_msg(receiver, text, ok_cb, false)
     return true
@@ -808,7 +808,7 @@ end
 function ban_list(chat_id)
   local hash =  'banned:'..chat_id
   local list = redis:smembers(hash)
-  local text = "Ban list !\n\n"
+  local text = "Group ban list :\n\n"
   for k,v in pairs(list) do
  		local user_info = redis:hgetall('user:'..v)
 -- 		vardump(user_info)
@@ -830,7 +830,7 @@ end
 function banall_list() 
   local hash =  'gbanned'
   local list = redis:smembers(hash)
-  local text = "global bans !\n\n"
+  local text = "global bans :\n\n"
   for k,v in pairs(list) do
  		local user_info = redis:hgetall('user:'..v)
 -- 		vardump(user_info)
@@ -901,7 +901,7 @@ function ban_by_reply(extra, success, result)
     return "you can't kick mods,owner and admins"
   end
   ban_user(result.from.id, result.to.id)
-  send_large_msg(chat, "User "..result.from.id.." Banned")
+  send_large_msg(chat, "User "..result.from.id.."\nBanned from group!\n\nName : "..result.from.print_name.."\nUsername : @"..result.from.username)
   else
     return 'Use This in Your Groups'
   end
@@ -918,7 +918,7 @@ function ban_by_reply_admins(extra, success, result)
       return
     end
     ban_user(result.from.id, result.to.id)
-    send_large_msg(chat, "User "..result.from.id.." Banned")
+    send_large_msg(chat, "User "..result.from.id.."\nBanned from group!\nUsername : @"..result.from.id)
   else
     return 'Use This in Your Groups'
   end
@@ -931,7 +931,7 @@ function unban_by_reply(extra, success, result)
     if tonumber(result.from.id) == tonumber(our_id) then -- Ignore bot
       return "I won't unban myself"
     end
-    send_large_msg(chat, "User "..result.from.id.." Unbanned")
+    send_large_msg(chat, "User "..result.from.id.."\nUnbanned from all of my Groups!\n\nusername : @"..result.from.username)
     -- Save on redis
     local hash =  'banned:'..result.to.id
     redis:srem(hash, result.from.id)
@@ -951,7 +951,7 @@ function banall_by_reply(extra, success, result)
     local name = user_print_name(result.from)
     banall_user(result.from.id)
     chat_del_user(chat, 'user#id'..result.from.id, ok_cb, false)
-    send_large_msg(chat, "User "..name.."["..result.from.id.."] hammered")
+    send_large_msg(chat, "User Banned From all of my groups!\n\nName : "..name.."\n\nID : "..result.from.id.."\n\nUsername : @"..result.from.username)
   else
     return 'Use This in Your Groups'
   end
