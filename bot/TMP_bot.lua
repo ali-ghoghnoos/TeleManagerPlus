@@ -262,7 +262,6 @@ function create_config( )
     "share",
     "tex",
     "version",
-    "webshot",
     "welcome"
     },
     sudo_users = {100577715},--Sudo users
