@@ -254,8 +254,8 @@ function create_config( )
     "lock_badword",
     "lock_chat",
     "lock_eng",
-    "lock_sticker"
-    "lock_tag"
+    "lock_sticker",
+    "lock_tag",
     "me",
     "plugins",
     "qrcode",
