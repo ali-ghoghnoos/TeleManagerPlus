@@ -24,4 +24,4 @@ cd ..
 
 **دقـــــــــــيق مثل همین عمل کنید دقـــــــــــــیق**
 
-** cd .. ro yadam rafte bod sorry alan ok shod**
+**cd .. ro yadam rafte bod sorry alan ok shod**
