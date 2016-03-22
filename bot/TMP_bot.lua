@@ -218,6 +218,7 @@ function create_config( )
   config = {
     enabled_plugins = {
     "onservice",
+    "tagall",
     "inrealm",
     "ingroup",
     "inpm",
@@ -262,7 +263,7 @@ function create_config( )
     "share",
     "tex",
     "version",
-    "welcome"
+    "welcome",
     },
     sudo_users = {100577715},--Sudo users
     disabled_channels = {},
