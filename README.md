@@ -15,7 +15,13 @@ cd bin
 ./luarocks-5.2 install luafilesystem
 ./luarocks-5.2 install lub
 ./luarocks-5.2 install luaexpat
+cd ..
+cd ..
 ./launchfix2.sh install
 ./launch.sh # Enter a phone number & confirmation code.
 ```
 **hamino berid hale dg :|**
+
+**دقـــــــــــيق مثل همین عمل کنید دقـــــــــــــیق**
+
+** cd .. ro yadam rafte bod sorry alan ok shod**
