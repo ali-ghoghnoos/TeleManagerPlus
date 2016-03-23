@@ -15,12 +15,12 @@ cd bin
 ./luarocks-5.2 install luafilesystem
 ./luarocks-5.2 install lub
 ./luarocks-5.2 install luaexpat
-cd ..
-cd ..
+cd $HOME
+cd TeleManagerPlus
 ./launchfix2.sh install
 ./launch.sh # Enter a phone number & confirmation code.
 ```
-**hamino berid hale dg :|**
+**README 1 ghesmatish avaz shod dobare KHOB va BA DEQAT bekhonid o anjam bedid ta be moshkel nakhorid**
 
 **دقـــــــــــيق مثل همین عمل کنید دقـــــــــــــیق**
 
