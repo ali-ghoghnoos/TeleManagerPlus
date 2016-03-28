@@ -918,7 +918,7 @@ function ban_by_reply_admins(extra, success, result)
       return
     end
     ban_user(result.from.id, result.to.id)
-    send_large_msg(chat, "User "..result.from.id.."\nBanned from group!\nUsername : @"..result.from.id)
+    send_large_msg(chat, "User "..result.from.id.."\nBanned from group!\nUsername : @"..result.from.username)
   else
     return 'Use This in Your Groups'
   end
