@@ -236,7 +236,6 @@ function create_config( )
     "plugins",
     "admin",
     "calc",
-    "copyright",
     "dl",
     "up",
     "echo",
