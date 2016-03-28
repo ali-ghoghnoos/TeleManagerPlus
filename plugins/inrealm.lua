@@ -7,11 +7,9 @@ local function create_group(msg)
         if is_sudo(msg) then
                 local group_creator = msg.from.print_name
                 create_group_chat (group_creator, group_name, ok_cb, false)
-                return 'Group [ '..string.gsub(group_name, '_', ' ')..' ] has been created.'
-            elseif is_admin(msg) then   
-                send_document(get_receiver(msg), "./data/me/creategroup.webp", ok_cb, false) --Send sticker when admin want to creategroup!
-
-        else return "For create group,send pm to @ali_ghoghnoos\nOr join support (with link) from our channel\n@telemanager_ch"
+                return 'Group [ '..string.gsub(group_name, '_', ' ')..' ] has been created!\nCheck Pm!'
+        elseif not is_sudo(msg) then
+            return 'For Creating Group,Send Pm To @ali_ghoghnoos!\n\nIf you are Reported,Send msg To @ali_ghoghnoos_bot!\n\nOur Channel : @telemanager_ch\n\nGithub:\nGithub.com/telemanagerplus'
         end
 end
 
@@ -21,9 +19,7 @@ local function create_realm(msg)
                 local group_creator = msg.from.print_name
                 create_group_chat (group_creator, group_name, ok_cb, false)
                 return 'Realm [ '..string.gsub(group_name, '_', ' ')..' ] has been created.'
-                elseif is_admin(msg) then return ":|\n yani boro ta nakardamet :|"
-        else return ":|"
-end
+        end
 end
 
 
@@ -49,7 +45,7 @@ local function get_group_type(msg)
   local data = load_data(_config.moderation.data)
   if data[tostring(msg.to.id)] then
     if not data[tostring(msg.to.id)]['group_type'] then
-     return 'No group type available.'
+     return 'No group type available.\nAsk Sudo To set it !'
     end
      local group_type = data[tostring(msg.to.id)]['group_type']
      return group_type
@@ -599,7 +595,6 @@ function run(msg, matches)
 			end
 		end
 		if matches[1] == 'addadmin' then
-		    if is_sudo(msg) then
 			if string.match(matches[2], '^%d+$') then
 				local admin_id = matches[2]
 				print("user "..admin_id.." has been promoted as admin")
@@ -611,7 +606,6 @@ function run(msg, matches)
 			end
 		end
 		if matches[1] == 'removeadmin' then
-		    if is_sudo(msg) then
 			if string.match(matches[2], '^%d+$') then
 				local admin_id = matches[2]
 				print("user "..admin_id.." has been demoted")
@@ -631,7 +625,9 @@ function run(msg, matches)
 		end
 		if matches[1] == 'list' and matches[2] == 'groups' then
                   if msg.to.type == 'chat' then
-			return 'Only Work In Private Chat !'	
+			groups_list(msg)
+		        send_document("chat#id"..msg.to.id, "./groups/lists/groups.txt", ok_cb, false)	
+			return "Group list created" --group_list(msg)
                    elseif msg.to.type == 'user' then 
                         groups_list(msg)
 		        send_document("user#id"..msg.from.id, "./groups/lists/groups.txt", ok_cb, false)	
@@ -640,14 +636,15 @@ function run(msg, matches)
 		end
 		if matches[1] == 'list' and matches[2] == 'realms' then
                   if msg.to.type == 'chat' then
-			return 'Only Work In Private Chat !'	
+			realms_list(msg)
+		        send_document("chat#id"..msg.to.id, "./groups/lists/realms.txt", ok_cb, false)	
+			return "Realms list created" --realms_list(msg)
                    elseif msg.to.type == 'user' then 
                         realms_list(msg)
 		        send_document("user#id"..msg.from.id, "./groups/lists/realms.txt", ok_cb, false)	
 			return "Realms list created" --realms_list(msg)
                   end
 		end
-	end
    		 if matches[1] == 'res' and is_momod(msg) then 
       			local cbres_extra = {
         			chatid = msg.to.id
@@ -658,7 +655,8 @@ function run(msg, matches)
       			return res_user(username,  callbackres, cbres_extra)
     end
 end
-end
+
+
 
 return {
   patterns = {
