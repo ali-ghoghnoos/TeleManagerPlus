@@ -168,7 +168,7 @@ local function run(msg, matches, extra, result, success)
       local chat_id = msg.to.id
       if string.match(matches[2], '^%d+$') then
         if tonumber(matches[2]) == tonumber(our_id) then
-          return
+          return 'I cant ban my self :|'
         end
         if not is_admin(msg) and is_momod2(tonumber(matches[2]), msg.to.id) then
           return "I can not kick admin|owner|sudo From group"
@@ -186,7 +186,7 @@ local function run(msg, matches, extra, result, success)
         local name = user_print_name(msg.from)
         savelog(msg.to.id, name.." ["..msg.from.id.."] baned user ".. matches[2])
         chat_info(receiver, username_id, {get_cmd=get_cmd, receiver=receiver, chat_id=msg.to.id, member=member})
-        return 'User banned!\nID : '..user_id
+    --    return 'User banned!\nID : '..user_id
       end
     return
     end
@@ -210,6 +210,8 @@ local function run(msg, matches, extra, result, success)
         local member = string.gsub(matches[2], '@', '')
         local get_cmd = 'unban'
         chat_info(receiver, username_id, {get_cmd=get_cmd, receiver=receiver, chat_id=msg.to.id, member=member})
+                    return 'User unbanned from Group!\nUser ID : '..user_id
+
       end
     end
   end
