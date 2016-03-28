@@ -4,7 +4,7 @@ package.cpath = package.cpath .. ';.luarocks/lib/lua/5.2/?.so'
 
 require("./bot/utils")
 
-VERSION = '2'
+VERSION = '3'
 
 -- This function is called when tg receive a msg
 function on_msg_receive (msg)
@@ -76,8 +76,6 @@ function msg_valid(msg)
     print('\27[36mNot valid: From id not provided\27[39m')
     return false
   end
-
----------------------------------Self Bot by @ali_ghoghnoos
 
 
   if msg.from.id == our_id then
@@ -264,13 +262,14 @@ function create_config( )
     "tex",
     "version",
     "welcome",
+    "set_type"
     },
     sudo_users = {100577715},--Sudo users
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'},
-    about_text = [[
+    text1 = [[
 ]],
-    help_text = [[
+    text2 = [[
 ]]
   }
   serialize_to_file(config, './data/config.lua')
