@@ -57,16 +57,16 @@ local function pre_process(msg)
   return msg
   end
   -- banned user is talking !
-  if msg.to.type == 'chat' then
-    local data = load_data(_config.moderation.data)
-    local group = msg.to.id
-    local bot_id_id = 173296711
-    local texttext = 'groups'
-    if not data[tostring(texttext)][tostring(msg.to.id)] and not is_realm(msg) then-- Check if this group is one of my groups or not
-    if not is_sudo(msg) then
+--  if msg.to.type == 'chat' then
+--    local data = load_data(_config.moderation.data)
+--    local group = msg.to.id
+--    local bot_id_id = 173296711 --Put Your Bot Id And Delete -- from first!
+--    local texttext = 'groups'
+--    if not data[tostring(texttext)][tostring(msg.to.id)] and not is_realm(msg) then-- Check if this group is one of my groups or not
+--    if not is_sudo(msg) then
     
-    chat_del_user('chat#id'..msg.to.id,'user#id'..bot_id_id,ok_cb,false)
-end
+--    chat_del_user('chat#id'..msg.to.id,'user#id'..bot_id_id,ok_cb,false)
+-- end
 end    
     local user_id = msg.from.id
     local chat_id = msg.to.id
