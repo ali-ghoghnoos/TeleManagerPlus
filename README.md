@@ -9,6 +9,7 @@ git clone https://github.com/telemanagerplus/TeleManagerPlus.git
 cd TeleManagerPlus
 chmod +x launchfix2.sh
 chmod +x launch.sh
+chmod +x autolaunch.sh
 ./launchfix2.sh install
 cd .luarocks
 cd bin
@@ -18,7 +19,7 @@ cd bin
 cd $HOME
 cd TeleManagerPlus
 ./launchfix2.sh install
-./launch.sh # Enter a phone number & confirmation code.
+./autolaunch.sh # Enter a phone number & confirmation code.
 ```
 **README 1 ghesmatish avaz shod dobare KHOB va BA DEQAT bekhonid o anjam bedid ta be moshkel nakhorid**
 
