@@ -2,7 +2,7 @@
 do
  function run(msg, matches)
  
- local fuse = 'پیام پشتیبانی جدید دریافت شد\n\n آیدی ' .. msg.from.id .. '\n\n نام ' .. msg.from.print_name ..'\n\n یوزر آیدی @' .. msg.from.username .. '\n\n پیام :' .. matches[1] 
+ local fuse = 'New FeedBack!\n\nID : ' .. msg.from.id .. '\n\n Name : ' .. msg.from.print_name ..'\n\n Username : @'..msg.from.username..'\n\n\n PM:\n' .. matches[1] 
  local fuses = '!printf user#id' .. msg.from.id
  
  
@@ -11,7 +11,7 @@ do
 
    
   local sends = send_msg(chat, fuse, ok_cb, false)
-  return 'پیام شما با موفقیت ارسال شد'
+  return 'Your FeedBack Sent To Our Team Successfully!'
  
  end
  end
