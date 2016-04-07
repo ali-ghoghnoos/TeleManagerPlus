@@ -6,10 +6,11 @@ local function callback(extra, success, result)
   vardump(result)
 end
 local function run(msg, matches)
-  local ali_ghoghnoos = 'user#id' ..100577715 --Put you id Here !
+      local sudo = 100577715 --Put you id Here !
+    local addsudo = 'user#id'..sudo
   local chat = get_receiver(msg)
   if is_momod(msg) then  -- you can set it to is_owner(msg) 
-    chat_add_user(chat, ali_ghoghnoos, callback, false)
+    chat_add_user(chat, addsudo, callback, false)
     end
 end
 
