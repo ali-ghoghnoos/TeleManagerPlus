@@ -58,10 +58,11 @@ local function pre_process(msg)
   end
   -----------------------AUTO LEAVE-----------------------
   --------first delete all of -- from first of it---------
---  if msg.to.type == 'chat' then
---    local data = load_data(_config.moderation.data)
---    local group = msg.to.id
---    local bot_id_id = 173296711 ---------------Put Your Bot Id Here!
+  ----------------------------------------------Put Bot Id Here>----
+--  if msg.to.type == 'chat' then                                 --
+--    local data = load_data(_config.moderation.data)             --
+--    local group = msg.to.id                                     --
+--    local bot_id_id = 173296711 <------------------------------<--
 --    local texttext = 'groups'
 --    if not data[tostring(texttext)][tostring(msg.to.id)] and not is_realm(msg) then
 --    if not is_sudo(msg) then
