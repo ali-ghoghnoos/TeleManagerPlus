@@ -40,4 +40,5 @@ cd TeleManagerPlus
 # Auto Leave Confiure :
 
 **go to onservice plugin and config it !**
+
 ***Then Go To banhammer plugin and see line 59 - 71 and do anything that i tell there!***
