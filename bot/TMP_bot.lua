@@ -261,7 +261,9 @@ function create_config( )
     "tex",
     "version",
     "welcome",
-    "set_type"
+    "set_type",
+    "server",
+    "voice"
     },
     sudo_users = {100577715},--Sudo users
     disabled_channels = {},
