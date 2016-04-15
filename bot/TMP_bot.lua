@@ -260,7 +260,8 @@ function create_config( )
     "share",
     "tex",
     "version",
-    "welcome",
+    "setwelcome",
+    "getwelcome",
     "set_type",
     "server",
     "voice"
